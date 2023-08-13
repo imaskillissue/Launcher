@@ -7,7 +7,7 @@ import java.io.File
 var servers = mutableListOf<SubServer>()
 var active = mutableListOf<SubServer>()
 val names = mutableListOf<String>()
-var consoleChannel = ConsoleChannel("Valos Launcher")
+var defaultConsoleChannel = DefaultConsoleChannel("Valos Launcher")
 
 fun main(args: Array<String>)
 {
@@ -16,8 +16,8 @@ fun main(args: Array<String>)
 		save()
 	})
 	load()
-	consoleChannel.println("Valos Launcher v0.1.0")
-	consoleChannel.println("Type 'help' for a list of commands.")
+	defaultConsoleChannel.println("Valos Launcher v0.1.0")
+	defaultConsoleChannel.println("Type 'help' for a list of commands.")
 	var input = ""
 	while (true)
 	{
@@ -82,7 +82,7 @@ fun save()
 	}
 	val json = Gson().toJson(servers)
 	file.writeText(json)
-	consoleChannel.println("Saved servers.")
+	defaultConsoleChannel.println("Saved servers.")
 }
 
 fun stopServer(name: String)

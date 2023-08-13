@@ -1,11 +1,12 @@
 package me.skillissue.launcher
 
-class ConsoleChannel(private val owner: String): IConsoleChannel
+class DefaultConsoleChannel(private val owner: String): IConsoleChannel
 {
 
 	private var messages = mutableListOf<String>()
+	private var input = ""
 
-	fun displayMessages()
+	override fun displayMessages()
 	{
 		Shell.clear()
 		printLogo()
@@ -16,6 +17,24 @@ class ConsoleChannel(private val owner: String): IConsoleChannel
 			kotlin.io.println("${ConsoleColoring.GREEN_BOLD}$owner " +
 					"${ConsoleColoring.CYAN}> " +
 					"${ConsoleColoring.YELLOW}$message${ConsoleColoring.RESET}")
+		}
+	}
+
+	override fun handleInput(key: Int)
+	{
+		if (key == 13) // Enter
+		{
+			messages.add(input)
+			input = ""
+		}
+		else if (key == 127) // Backspace
+		{
+			if (input.isNotEmpty())
+				input = input.substring(0, input.length - 1)
+		}
+		else
+		{
+			input += key.toChar()
 		}
 	}
 

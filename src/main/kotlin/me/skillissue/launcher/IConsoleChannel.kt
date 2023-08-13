@@ -4,5 +4,7 @@ interface IConsoleChannel
 {
 	fun displayMessages()
 
+	fun handleInput(key: Int)
+
 
 }

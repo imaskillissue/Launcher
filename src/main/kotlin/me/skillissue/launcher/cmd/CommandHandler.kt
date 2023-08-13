@@ -1,6 +1,6 @@
 package me.skillissue.launcher.cmd
 
-import me.skillissue.launcher.consoleChannel
+import me.skillissue.launcher.defaultConsoleChannel
 import me.skillissue.launcher.startServer
 import kotlin.system.exitProcess
 
@@ -34,7 +34,7 @@ object CommandHandler
 			//"list" -> list(args)
 			"help" -> help(args)
 			"exit" -> exit(args)
-			else -> consoleChannel.println("Unknown command: $command")
+			else -> defaultConsoleChannel.println("Unknown command: $command")
 		}
 	}
 
@@ -53,23 +53,23 @@ object CommandHandler
 	{
 		if (args.size != 1)
 		{
-			consoleChannel.println("Usage: start <server>")
+			defaultConsoleChannel.println("Usage: start <server>")
 			return
 		}
 		val server = args[0]
-		consoleChannel.println("Starting server '$server'...")
+		defaultConsoleChannel.println("Starting server '$server'...")
 		startServer(server)
 	}
 
 	private fun exit(args: Array<String>)
 	{
-		consoleChannel.println("Exiting...")
+		defaultConsoleChannel.println("Exiting...")
 		exitProcess(0)
 	}
 
 	private fun help(args: Array<String>)
 	{
-		consoleChannel.println("Valos Launcher v0.1.0\n" +
+		defaultConsoleChannel.println("Valos Launcher v0.1.0\n" +
 				"Type 'help' for a list of commands.\n" +
 				"Type 'start <server>' to start all sub servers.\n" +
 				"Type 'load <server>' to load sub servers console.\n" +

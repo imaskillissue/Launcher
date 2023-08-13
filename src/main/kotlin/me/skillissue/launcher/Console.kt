@@ -5,14 +5,13 @@ import org.jline.utils.NonBlockingReader
 
 object Console
 {
-	private var currentChannel: ConsoleChannel = consoleChannel
+	private var currentChannel: DefaultConsoleChannel = defaultConsoleChannel
 		set(value)
 		{
 			field = value
 			Shell.clear()
 		}
 	private var open = true
-	private var input = ""
 	private val terminal = TerminalBuilder.builder().build()
 	private val reader: NonBlockingReader
 
@@ -31,7 +30,7 @@ object Console
 		}
 	}
 
-	fun changeChannel(channel: ConsoleChannel)
+	fun changeChannel(channel: DefaultConsoleChannel)
 	{
 		currentChannel = channel
 	}

